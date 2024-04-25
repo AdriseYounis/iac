@@ -24,8 +24,8 @@ jobs:
 
     - name: HashiCorp - Setup Terraform
       uses: hashicorp/setup-terraform@v1.0.1
-      with:
-        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
     - name: Install civo provider
       run: wget -c https://github.com/civo/terraform-provider-civo/releases/download/v0.9.4/terraform-provider-civo_0.9.4_linux_amd64.tar.gz -O - | sudo tar -xz && mv terraform-provider-civo terraform-provider-civo_v0.9.4
