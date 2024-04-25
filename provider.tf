@@ -25,5 +25,5 @@ terraform {
 
 provider "civo" {
   region = "LON1"
-  token = "qHbNSMLkiTe9DYGAItKpZVSCYKqRtGBCQLJlL691nmPkQ6Q3J7"
+  token = var.civo_token
 }
