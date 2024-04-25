@@ -6,13 +6,8 @@ terraform {
         endpoints = {
         s3 = "https://objectstore.lon1.civo.com"
         }
-        skip_region_validation      = true
         skip_credentials_validation = true
-        skip_metadata_api_check     = true
-        skip_requesting_account_id  = true
         use_path_style              = true
-        access_key = "0UMMDZ9BBNS2E2SM018F"
-        secret_key = "HsUpLimzeIoSAwilYetUB6KnkrxG7ozarFWxFhMN"
   }
 
   required_providers {
