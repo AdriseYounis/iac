@@ -39,9 +39,3 @@ resource "civo_kubernetes_cluster" "my-cluster" {
         node_count = 1
     }
 }
-
-resource "civo_object_store" "statefile" {
-    name = "terraform-state"
-    max_size_gb = 500
-    region = "LON1"
-}
