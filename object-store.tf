@@ -1,7 +1,7 @@
 resource "civo_object_store_credential" "tf-state-creds" {
     name = "tf-os-creds"
-    access_key_id = var.access_key_id
-    secret_access_key = var.secret_key
+    access_key_id = "adrise-access-key"
+    secret_access_key = "adrise-secret-key"
 }
 
 data "civo_object_store_credential" "tf-state-creds" {
