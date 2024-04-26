@@ -10,7 +10,7 @@ data "civo_object_store_credential" "tf-state-creds" {
 }
 
 resource "civo_object_store" "tf-os" {
-    name = "terraform-state"
+    name = "tf-state"
     max_size_gb = 500
     region = "LON1"
     access_key_id = civo_object_store_credential.tf-state-creds.access_key_id
