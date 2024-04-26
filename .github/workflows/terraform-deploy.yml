@@ -32,7 +32,7 @@ jobs:
       run: terraform validate -no-color
 
     - id: plan
-      run: terraform plan -no-color -var="civo_token=${{ secrets.CIVO_TOKEN }}"
+      run: terraform plan -no-color -var="civo_token=${{ secrets.CIVO_TOKEN }}" -var="access_key_id=${{ secrets.ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.SECRET_KEY }}"
       continue-on-error: true
 
     - uses: actions/github-script@0.9.0
@@ -64,6 +64,5 @@ jobs:
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var="civo_token=${{ secrets.CIVO_TOKEN }}"
+      run: terraform apply -auto-approve -var="civo_token=${{ secrets.CIVO_TOKEN }}" -var="access_key_id=${{ secrets.ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.SECRET_KEY }}"
 
-      
