@@ -1,0 +1,17 @@
+name: Infrastructure deployment
+
+on:
+  push:  
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    uses: iac/.github/workflows/infra-deploy-template.yml@main
+    with:
+      deployment-env: development
+    secrets:
+      access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+      secret-key: ${{ secrets.SECRET_KEY }}
+      civo-token: ${{ secrets.CIVO_TOKEN }}
