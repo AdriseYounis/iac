@@ -7,28 +7,64 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy-infra:
-    name: Deploy Infrastructure 
+  dev-deployment:
+    name: Deploy to Deployment
     runs-on: ubuntu-latest
     environment: development 
 
     steps:
     - uses: actions/checkout@v2
+       
+    - name: Deploy Infrastructure 
+      run: echo "run infra!"
+  
+    - name: Deploy Application 
+      run: echo "deploy app to kube"
     
-  deploy-app:
-      name: Deploy Application 
-      needs: deploy-infra
-      runs-on: ubuntu-latest
-      environment: development 
-  
-      steps:
-      - uses: actions/checkout@v2
+    - name: Run Health Check  
+      run: echo "Run health check"
 
-  run-integration-tests:
-      name: Run Integration Tests 
-      needs: deploy-app
-      runs-on: ubuntu-latest
-      environment: development 
+    - name: Run Component test  
+      run: echo "Test app"
+
+  sandbox-deployment:
+    name: Deploy to Sandbox
+    needs: dev-deployment
+    runs-on: ubuntu-latest
+    environment: Sandbox 
+
+    steps:
+    - uses: actions/checkout@v2
+       
+    - name: Deploy Infrastructure 
+      run: echo "run infra!"
   
-      steps:
-      - uses: actions/checkout@v2
+    - name: Deploy Application 
+      run: echo "deploy app to kube"
+    
+    - name: Run Health Check  
+      run: echo "Run health check"
+
+    - name: Run Component test  
+      run: echo "Test app"
+  
+  production-deployment:
+    name: Deploy to Sandbox
+    needs: sandbox-deployment
+    runs-on: ubuntu-latest
+    environment: Sandbox 
+
+    steps:
+    - uses: actions/checkout@v2
+       
+    - name: Deploy Infrastructure 
+      run: echo "run infra!"
+  
+    - name: Deploy Application 
+      run: echo "deploy app to kube"
+    
+    - name: Run Health Check  
+      run: echo "Run health check"
+
+    - name: Run Component test  
+      run: echo "Test app"
