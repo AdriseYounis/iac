@@ -8,7 +8,7 @@ on:
 
 jobs:
   dev-deployment:
-    name: Deploy to Deployment
+    name: Deploy Development
     runs-on: ubuntu-latest
     environment: development 
 
@@ -28,7 +28,7 @@ jobs:
       run: echo "Test app"
 
   sandbox-deployment:
-    name: Deploy to Sandbox
+    name: Deploy Sandbox
     needs: dev-deployment
     runs-on: ubuntu-latest
     environment: Sandbox 
@@ -49,10 +49,10 @@ jobs:
       run: echo "Test app"
   
   production-deployment:
-    name: Deploy to Sandbox
+    name: Deploy Production
     needs: sandbox-deployment
     runs-on: ubuntu-latest
-    environment: Sandbox 
+    environment: Production 
 
     steps:
     - uses: actions/checkout@v2
