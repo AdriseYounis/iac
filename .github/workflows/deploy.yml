@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    uses: iac/.github/workflows/infra-deploy-template.yml@main
+    uses: ./.github/workflows/infra-deploy-template.yml
     with:
       deployment-env: development
     secrets:
