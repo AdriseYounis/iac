@@ -7,10 +7,20 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy:
+  development:
     uses: ./.github/workflows/infra-deploy-template.yml
     with:
       deployment-env: development
+    secrets:
+      access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+      secret-key: ${{ secrets.SECRET_KEY }}
+      civo-token: ${{ secrets.CIVO_TOKEN }}
+
+  production:
+    needs: development
+    uses: ./.github/workflows/infra-deploy-template.yml
+    with:
+      deployment-env: production
     secrets:
       access-key-id: ${{ secrets.ACCESS_KEY_ID }}
       secret-key: ${{ secrets.SECRET_KEY }}
