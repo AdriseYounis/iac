@@ -52,6 +52,7 @@ resource "civo_firewall" "payserveglobal_firewall" {
 resource "civo_kubernetes_cluster" "my-cluster" {
     name = "payserveglobal-dev-civo"
     firewall_id = civo_firewall.payserveglobal_firewall.id
+    network_id = civo_network.custom_net.id
     cluster_type = "k3s"
     pools {
         label = "front-end" // Optional
