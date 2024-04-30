@@ -5,27 +5,26 @@ resource "helm_release" "prometheus" {
   repository = "https://prometheus-community.github.io/helm-charts"
   version    = "15.5.3"
 
-  set {
-    name  = "podSecurityPolicy.enabled"
-    value = true
-  }
-
-  set {
-    name  = "server.persistentVolume.enabled"
-    value = false
-  }
-
-  set {
-    name  = "server\\.resources"
-    value = yamlencode({
-      limits   = {
-        cpu    = "256m"
-        memory = "256Mi"
+  values = [
+    yamlencode({
+      podSecurityPolicy = {
+        enabled = false
       }
-      requests = {
-        cpu    = "256m"
-        memory = "256Mi"
+      server            = {
+        persistentVolume = {
+          enabled = false
+        }
+        resources        = {
+          limits   = {
+            cpu    = "256m"
+            memory = "256Mi"
+          }
+          requests = {
+            cpu    = "256m"
+            memory = "256Mi"
+          }
+        }
       }
     })
-  }
+  ]
 }
