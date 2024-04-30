@@ -28,7 +28,7 @@ resource "civo_firewall" "payserveglobal_firewall" {
     label      = "k8s"
     protocol   = "tcp"
     port_range = "6443"
-    cidr       = ["192.168.1.1/32", "192.168.10.4/32", "192.168.10.10/32", "74.220.23.186/32"]
+    cidr       = ["0.0.0.0/0"]
     action     = "allow"
   }
 
@@ -36,7 +36,7 @@ resource "civo_firewall" "payserveglobal_firewall" {
     label      = "ssh"
     protocol   = "tcp"
     port_range = "22"
-    cidr       = ["192.168.1.1/32", "192.168.10.4/32", "192.168.10.10/32", "74.220.23.186/32"]
+    cidr       = ["0.0.0.0/0"]
     action     = "allow"
   }
 
