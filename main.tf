@@ -15,12 +15,12 @@ resource "civo_network" "custom_net" {
 }
 
 resource "civo_firewall" "www" {
-  name       = "www"
+  name       = "payserveglobal-firewall"
   network_id = civo_network.custom_net.id
 }
 
 resource "civo_firewall" "payserveglobal_firewall" {
-  name                 = "www"
+  name                 = "payserveglobal-firewall"
   network_id           = civo_network.custom_net.id
   create_default_rules = false
   
