@@ -1,11 +1,31 @@
 resource "helm_release" "prometheus" {
-  name             = "prom"
-  chart            = "kube-prometheus-stack"
-  repository       = "https://prometheus-community.github.io/helm-charts"
-  namespace        = "monitoring"
-  version          = "17.1.3"
-  create_namespace = true
-  wait             = true
-  reset_values     = true
-  max_history      = 3
+  chart      = "prometheus"
+  name       = "prometheus"
+  namespace  = var.namespace
+  repository = "https://prometheus-community.github.io/helm-charts"
+  version    = "15.5.3"
+
+  set {
+    name  = "podSecurityPolicy.enabled"
+    value = true
+  }
+
+  set {
+    name  = "server.persistentVolume.enabled"
+    value = false
+  }
+
+  set {
+    name  = "server\\.resources"
+    value = yamlencode({
+      limits   = {
+        cpu    = "256m"
+        memory = "256Mi"
+      }
+      requests = {
+        cpu    = "256m"
+        memory = "256Mi"
+      }
+    })
+  }
 }
