@@ -4,6 +4,16 @@ terraform {
       source  = "civo/civo"
       version = "1.0.39"
     }
+
+    helm = {
+      source = "hashicorp/helm"
+      version = "2.10.1"
+    }
+
+     kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "2.21.1"
+    }
   }
 
   backend "s3" {
@@ -18,8 +28,8 @@ terraform {
     skip_requesting_account_id  = true
     skip_credentials_validation = true
     use_path_style              = true
-    access_key                  = var.access_key_id
-    secret_key                  = var.secret_key
+    access_key                  = "adrise-access-key"
+    secret_key                  = "adrise-secret-key"
     skip_s3_checksum            = true
   }
 }
@@ -27,4 +37,14 @@ terraform {
 provider "civo" {
   region = "LON1"
   token  = var.civo_token
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
 }
