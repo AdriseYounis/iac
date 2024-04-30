@@ -28,8 +28,8 @@ terraform {
     skip_requesting_account_id  = true
     skip_credentials_validation = true
     use_path_style              = true
-    access_key                  = "adrise-access-key"
-    secret_key                  = "adrise-secret-key"
+    access_key                  = var.access_key_id
+    secret_key                  = var.secret_key
     skip_s3_checksum            = true
   }
 }
@@ -42,7 +42,7 @@ provider "civo" {
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
-  }
+  } 
 }
 
 provider "kubernetes" {
