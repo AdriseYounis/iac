@@ -34,6 +34,11 @@ terraform {
   }
 }
 
+provider "civo" {
+  region = "LON1"
+  token  = var.civo_token
+}
+
 provider "kubernetes" {
   host     = data.civo_kubernetes_cluster.my-cluster.api_endpoint
   client_certificate = base64decode(
